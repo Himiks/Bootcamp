@@ -1,0 +1,55 @@
+---
+- name: "website deployment"
+  hosts: localhost
+  become: yes
+  gather_facts: yes
+
+  vars:
+    name: "Himiks"
+    surname: "Himiks"
+    webserver: "nginx"
+    module_name: "Ansible"
+    technologies:
+      - "Bash"
+      - "Python"
+      - "Terraform"
+
+  tasks:
+    - name: Update apt
+      apt:
+        update_cache: yes
+        force: true
+
+    - name: ensure nginx is at the latest version
+      package:
+        name: "{{ webserver }}"
+        state: latest
+      register: package_register
+
+    - name: debug
+      debug:
+        msg: "{{ package_register }}"
+
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Get my public IP address
+      uri:
+        url: "http://checkip.amazonaws.com"
+        return_content: true
+      register: my_public_ip
+
+    - name: Update webpage
+      template:
+        src: template.j2
+        dest: /var/www/html/index.html
+        owner: root
+        group: root
+        mode: "0774"
+
+    - name: Display webpage
+      debug:
+        msg: "Check http://{{ my_public_ip.content | trim }}/index.html"

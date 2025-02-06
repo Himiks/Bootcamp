@@ -1,0 +1,25 @@
+---
+- name: Print Dictionary
+  hosts: localhost
+  gather_facts: no
+
+  vars_prompt:
+    - name: secret
+      prompt: "Enter a secret"
+      private: yes
+
+  vars:
+    my_info:
+      name: "Himiks"
+      surname: "Himiks"
+      github_username: "Himiks"
+      secret: "{{ secret }}"
+      favorite_modules:
+        - "Bash"
+        - "Python"
+        - "Terraform"
+
+  tasks:
+    - name: Dictionary
+      debug:
+        var: my_info

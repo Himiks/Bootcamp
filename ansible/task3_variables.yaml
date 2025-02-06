@@ -1,0 +1,9 @@
+ vars:
+    name: "Himiks"
+    surname: "Himiks"
+    webserver: "nginx"
+    module_name: "Ansible"
+    technologies:
+      - "Bash"
+      - "Python"
+      - "Terraform"

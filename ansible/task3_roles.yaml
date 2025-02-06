@@ -1,0 +1,7 @@
+- name: "Website with role"
+  hosts: localhost
+  become: yes
+  gather_facts: yes
+  roles:
+    - bootcamp
+    
