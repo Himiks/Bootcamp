@@ -6,3 +6,4 @@ This is my Bootcamp repository where I have colleected all my works, labs and ta
 3. Bash scripting module with various interesting tasks
 4. Ansible module with configurations of website and servises
 5. Github workflow actions with python unit testing
+6. AWS module
